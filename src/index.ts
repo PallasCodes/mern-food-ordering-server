@@ -4,6 +4,7 @@ import 'dotenv/config'
 import mongoose from 'mongoose'
 
 import MyUserRoutes from './routes/MyUserRoutes'
+import { jwtCheck } from './middleware/auth'
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
   console.log('Connected to database!')

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+
 import User from '../models/user'
 
 const createCurrentUser = async (req: Request, res: Response) => {
@@ -9,7 +10,7 @@ const createCurrentUser = async (req: Request, res: Response) => {
     if (existingUser) {
       return res.status(200).send()
     }
-
+ 
     const newUser = new User(req.body)
     await newUser.save()
 
