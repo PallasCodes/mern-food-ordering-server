@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import { v2 as cloudinary } from 'cloudinary'
 
 import MyUserRoutes from './routes/MyUserRoutes'
+import MyRestaurantRoutes from './routes/MyRestaurantRoutes'
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
   console.log('Connected to database!')
@@ -26,6 +27,7 @@ app.get('/health', async (req: Request, res: Response) => {
 })
 
 app.use('/api/my/user', MyUserRoutes)
+app.use('/api/my/restaurant', MyRestaurantRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server started on port ${process.env.PORT}`)
