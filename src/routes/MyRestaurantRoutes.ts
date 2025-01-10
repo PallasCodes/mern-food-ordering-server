@@ -10,6 +10,12 @@ const router = express.Router()
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage, limits: { fileSize: 5 * 1024 * 1024 } }) // 5mb
 
+router.get(
+  '/',
+  jwtCheck,
+  jwtParse,
+  MyRestaurantController.getMyRestaurant as RequestHandler,
+)
 router.post(
   '/',
   upload.single('imageFile'),
@@ -17,6 +23,14 @@ router.post(
   jwtCheck,
   jwtParse,
   MyRestaurantController.createMyRestaurant as RequestHandler,
+)
+router.put(
+  '/',
+  upload.single('imageFile'),
+  validateMyRestaurantRequest as RequestHandler[],
+  jwtCheck,
+  jwtParse,
+  MyRestaurantController.updateMyRestaurant as RequestHandler,
 )
 
 export default router
